@@ -38,6 +38,7 @@ from lcnn.datasets import WireframeDataset, collate
 from lcnn.models.line_vectorizer import LineVectorizer
 from lcnn.models.multitask_learner import MultitaskHead, MultitaskLearner
 from lcnn.models.HT import hough_transform
+from lcnn.models import hg
 
 
 def get_outdir(identifier):
@@ -121,7 +122,7 @@ def main():
     print('vote_index loaded', vote_index.shape)
 
     if M.backbone == "stacked_hourglass":
-        model = lcnn.models.hg(
+        model = hg(
             depth=M.depth,
             head=MultitaskHead,
             num_stacks=M.num_stacks,
