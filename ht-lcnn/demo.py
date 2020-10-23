@@ -34,6 +34,7 @@ from lcnn.config import C, M
 from lcnn.models.line_vectorizer import LineVectorizer
 from lcnn.models.multitask_learner import MultitaskHead, MultitaskLearner
 from lcnn.models.HT import hough_transform
+from lcnn.models import hg
 
 from lcnn.postprocess import postprocess
 from lcnn.utils import recursive_to
@@ -81,7 +82,7 @@ def main():
     vote_index = torch.from_numpy(vote_index).float().contiguous().to(device)
     print('load vote_index', vote_index.shape)
 
-    model = lcnn.models.hg(
+    model = hg(
         depth=M.depth,
         head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
         num_stacks=M.num_stacks,
